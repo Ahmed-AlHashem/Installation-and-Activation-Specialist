@@ -1,0 +1,104 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Make body at least full height of the viewport */
+    font-family: Arial, sans-serif;
+    background-color: #282c34; /* Dark background color */
+    color: #ffffff; /* White text for contrast */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+header {
+    background-color: #1ecad3; /* Teal color */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+.container {
+    flex: 1; /* Allow the container to grow and fill the space */
+    max-width: 800px; /* Set a max width for the container */
+    margin: 20px auto;
+    padding: 20px;
+    background: #3c4043; /* Darker container background */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+h1, h2 {
+    margin: 0 0 20px;
+    text-align: center; /* Center the headings */
+}
+.stats {
+    display: flex;
+    justify-content: space-between; /* Space out the stats */
+    flex-wrap: wrap; /* Allow wrapping */
+    margin-top: 30px;
+    padding: 0 10px;
+}
+.stat {
+    background-color: #1ecad3; /* Teal color */
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    flex: 1; /* Allow the stat boxes to grow */
+    margin: 10px; /* Margin for spacing */
+    text-align: center;
+    min-width: 200px; /* Minimum width to prevent squishing */
+    max-width: 300px; /* Limit max width */
+}
+.chart-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center the chart */
+    margin-top: 20px; /* Space above the chart */
+}
+canvas {
+    border: 1px solid #1ecad3; /* Border for the pie chart */
+    border-radius: 5px;
+    margin-bottom: 10px; /* Space between chart and legend */
+}
+.legend {
+    background-color: #444; /* Dark background for the legend box */
+    border-radius: 5px;
+    padding: 10px; /* Padding inside the legend box */
+    width: 50%; /* Set a width for the legend box */
+    max-width: 400px; /* Max width for larger screens */
+    text-align: center; /* Center text inside the legend box */
+    display: flex;
+    flex-direction: column; /* Stack legend items vertically */
+    align-items: center; /* Center items */
+    margin: 0 auto; /* Center the legend box */
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; /* Space between legend items */
+}
+.color-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    margin-right: 10px; /* Space between color box and text */
+}
+.start-date, .days-counter {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+}
+.description {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.5; /* Improve readability */
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #1a1c1e; /* Dark footer color */
+    color: #ffffff;
+    width: 100%;
+}
+hr {
+    margin: 20px 0; /* Space around horizontal rule */
+    border: 0;
+    border-top: 1px solid #1ecad3; /* Teal line */
+}

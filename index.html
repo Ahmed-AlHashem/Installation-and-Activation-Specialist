@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS Devices Tracker</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Make body at least full height of the viewport */
+            font-family: Arial, sans-serif;
+            background-color: #282c34; /* Dark background color */
+            color: #ffffff; /* White text for contrast */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        header {
+            background-color: #1ecad3; /* Teal color */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            flex: 1; /* Allow the container to grow and fill the space */
+            max-width: 800px; /* Set a max width for the container */
+            margin: 20px auto;
+            padding: 20px;
+            background: #3c4043; /* Darker container background */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        h1, h2 {
+            margin: 0 0 20px;
+            text-align: center; /* Center the headings */
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between; /* Space out the stats */
+            flex-wrap: wrap; /* Allow wrapping */
+            margin-top: 30px;
+            padding: 0 10px;
+        }
+        .stat {
+            background-color: #1ecad3; /* Teal color */
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1; /* Allow the stat boxes to grow */
+            margin: 10px; /* Margin for spacing */
+            text-align: center;
+            min-width: 200px; /* Minimum width to prevent squishing */
+            max-width: 300px; /* Limit max width */
+        }
+        .chart-container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center the chart */
+            margin-top: 20px; /* Space above the chart */
+        }
+        canvas {
+            border: 1px solid #1ecad3; /* Border for the pie chart */
+            border-radius: 5px;
+            margin-bottom: 10px; /* Space between chart and legend */
+        }
+        .legend {
+            background-color: #444; /* Dark background for the legend box */
+            border-radius: 5px;
+            padding: 10px; /* Padding inside the legend box */
+            width: 50%; /* Set a width for the legend box */
+            max-width: 400px; /* Max width for larger screens */
+            text-align: center; /* Center text inside the legend box */
+            display: flex;
+            flex-direction: column; /* Stack legend items vertically */
+            align-items: center; /* Center items */
+            margin: 0 auto; /* Center the legend box */
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px; /* Space between legend items */
+        }
+        .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            margin-right: 10px; /* Space between color box and text */
+        }
+        .start-date, .days-counter {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .description {
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.5; /* Improve readability */
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #1a1c1e; /* Dark footer color */
+            color: #ffffff;
+            width: 100%;
+        }
+        hr {
+            margin: 20px 0; /* Space around horizontal rule */
+            border: 0;
+            border-top: 1px solid #1ecad3; /* Teal line */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Installation and Activation Specialist</h1>
+        <p>Eastern Province, Saudi Arabia</p>
+    </header>
+    <div class="container">
+        <h2>Device Installation and Repair Tracker</h2>
+        <div class="description">
+            <p>As an Installation and Activation Specialist at Ninja, I play a pivotal role in ensuring the success of our restaurant partners. My responsibilities include:</p>
+            <ul style="list-style-type: none; padding: 0;">
+			    <hr>
+                <li><strong>Onboarding New Partners:</strong> Collaborating with sales and partnerships teams to streamline the onboarding process for new restaurant partners, ensuring all necessary documentation and agreements are completed efficiently.</li>
+                <hr>
+                <li><strong>System Installation:</strong> Managing the setup and installation of point-of-sale (POS) systems and related technology at partner locations, troubleshooting any technical issues that arise during the process to provide swift solutions.</li>
+                <hr>
+                <li><strong>Training and Support:</strong> Conducting comprehensive training sessions for restaurant staff to ensure they can effectively utilize the delivery platform and POS systems, while offering ongoing support to ensure smooth operations post-installation.</li>
+                <hr>
+                <li><strong>Monitoring Performance:</strong> Tracking the performance of newly activated partners to identify areas for improvement, and gathering feedback to inform future training and support efforts.</li>
+                <hr>
+                <li><strong>Collaboration:</strong> Working closely with operations and tech teams to guarantee seamless integration and support for our restaurant partners, while maintaining regular communication to foster strong relationships and encourage feedback.</li>
+                <hr>
+                <li><strong>Data Management:</strong> Utilizing Asana to manage tasks, retrieve Excel files from ongoing projects, and filter restaurant data across Saudi Arabia for better operational insights.</li>
+            </ul>
+        </div>
+        <div class="stats">
+            <div class="stat">
+                <h3>Installed Devices</h3>
+                <p id="installedDevices">94</p>
+            </div>
+            <div class="stat">
+                <h3>Repaired/ Replaced Devices</h3>
+                <p id="repairedDevices">4</p>
+            </div>
+        </div>
+        <div class="chart-container">
+            <canvas id="combinedChart" width="300" height="300"></canvas>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #1ecad3;"></div>
+                    <span>Installed Devices</span>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #ff5733;"></div>
+                    <span>Repaired/ Replaced Devices</span>
+                </div>
+            </div>
+        </div>
+        <div class="start-date">
+            <p>Started on: 2024/12/29</p>
+        </div>
+        <div class="days-counter" id="daysCounter">
+            <!-- Days count will be displayed here -->
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 POS Device Tracker. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let installedCount = 94; // Example value
+        let repairedCount = 4; // Example value
+
+        document.getElementById('installedDevices').innerText = installedCount;
+        document.getElementById('repairedDevices').innerText = repairedCount;
+
+        // Calculate days at Ninja
+        const startDate = new Date('2024-12-29');
+        const currentDate = new Date();
+        const timeDiff = currentDate - startDate;
+        const daysAtNinja = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+
+        document.getElementById('daysCounter').innerText = `Days at Ninja: ${daysAtNinja}`;
+
+        // Function to draw pie chart
+        function drawPieChart(canvasId, data, labels, colors) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const total = data.reduce((sum, value) => sum + value, 0);
+            let startAngle = 0;
+
+            data.forEach((value, index) => {
+                const sliceAngle = (value / total) * 2 * Math.PI;
+                ctx.beginPath();
+                ctx.moveTo(150, 150); // Center of the pie
+                ctx.arc(150, 150, 100, startAngle, startAngle + sliceAngle); // Draw the slice
+                ctx.fillStyle = colors[index];
+                ctx.fill();
+                startAngle += sliceAngle;
+            });
+        }
+
+        // Draw the combined chart
+        drawPieChart('combinedChart', [installedCount, repairedCount], ['Installed Devices', 'Repaired Devices'], ['#1ecad3', '#ff5733']);
+    </script>
+</body>
+</html>
